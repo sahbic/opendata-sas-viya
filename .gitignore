@@ -1,5 +1,8 @@
 # venv
-ven
+venv
 
 # cache
 __pycache__
+
+# tests
+test.ipynb

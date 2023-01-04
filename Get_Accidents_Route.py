@@ -1,7 +1,8 @@
-import requests
-import pandas as pd
 import os
 os.chdir("/home/sasdemo/opendata-sas-viya")
+
+import requests
+import pandas as pd
 
 from utils import save_and_format_date, upload_save_table
 
@@ -47,12 +48,14 @@ for data in response.json()["data"]:
     else:
         pass
 
-# remplacer les valeurs
-caracs.an = caracs.an.replace(17, 2017).replace(18, 2018)
 
+# standardize dates
+caracs.an = caracs.an.replace(17, 2017).replace(18, 2018)
 caracs["date"] = caracs.jour.astype("str").str.zfill(2) + "-" + caracs.mois.astype("str").str.zfill(2) + "-" + caracs.an.astype("str")
 caracs["date"] = pd.to_datetime(caracs["date"], infer_datetime_format=True)
 
+# replace codes by categories
+# https://static.data.gouv.fr/resources/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2021/20221104-163105/description-des-bases-de-donnees-annuelles-2021.pdf
 code2cat = {
     "1":"Autoroute",
     "2":"Route nationale",
@@ -76,6 +79,7 @@ df= df[["Num_Acc", "date", "lat", "long","categorie", "vma", "plan", "lartpc", "
 df["lat"] = df["lat"].str.replace(",",".").astype("float")
 df["long"] = df["long"].str.replace(",",".").astype("float")
 
+# load data in SAS Viya
 caslib = "Opendata"
 save_and_format_date(df, "date", conn, "ACCIDENTS_ROUTE_CARAC_LIEUX", "ACC_ROUTE_TMP", caslib)
 save_and_format_date(caracs, "date", conn, "ACCIDENTS_ROUTE_CARAC", "ACC_ROUTE_TMP", caslib)
