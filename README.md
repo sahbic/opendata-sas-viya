@@ -10,5 +10,5 @@ This projects aims to provide, scripts and flows that continously fetch Datasets
 
 ## Set up
 
-1. Run `Create_venv.flw` to initiate the Python Environment
-2. Run `Flow_Opendata.flw` to fetch the datasets
+1. Run `1_Initialize.flw` to initialize the environment.
+2. Run `2_Get_Data.flw` to fetch the datasets.
