@@ -1,0 +1,2 @@
+# Terminate session
+conn.terminate()

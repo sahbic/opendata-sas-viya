@@ -4,7 +4,7 @@ os.chdir("/home/sasdemo/opendata-sas-viya")
 import requests
 import pandas as pd
 
-from utils import save_and_format_date, upload_save_table
+from src.utils import save_and_format_date, upload_save_table
 
 headers = {
     'Accept': 'application/json, text/plain, */*'
