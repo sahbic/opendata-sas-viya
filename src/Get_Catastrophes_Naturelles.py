@@ -5,7 +5,7 @@ import pandas as pd
 import requests
 import zipfile
 
-from utils import save_and_format_date, upload_save_table
+from src.utils import save_and_format_date, upload_save_table
 
 TMP_PATH = "tmp"
 

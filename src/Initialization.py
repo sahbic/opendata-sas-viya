@@ -7,7 +7,7 @@ conn = swat.CAS(hostname="sas-cas-server-default-client",port=5570, password=os.
 
 # Create caslib
 r = conn.dropCaslib(caslib="Opendata", quiet=True)
-r = conn.table.addCaslib(name="Opendata", session=False, path="/cas/data/caslibs/opendata/", createDirectory=True)
+r = conn.table.addCaslib(name="Opendata", session=False, path="/home/sasdemo/opendata/", createDirectory=True)
 
 # Terminate session
 conn.terminate()
